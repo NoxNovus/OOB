@@ -1,0 +1,25 @@
+def oobify(text):
+    oobified_text = ""
+    for char in text:
+        if char.lower() in "aeiou":
+            oobified_text += "oob"
+        elif char.isalpha():
+            oobified_text += char
+        else:
+            oobified_text += " "
+    return oobified_text
+
+def main():
+    try:
+        with open("original.txt", "r") as file:
+            original_text = file.read()
+            oobified_text = oobify(original_text)
+
+        with open("oobicript.txt", "w") as file:
+            file.write(oobified_text)
+        print("Text oobified and saved to oobicript.txt")
+    except FileNotFoundError:
+        print("Error: original.txt not found.")
+
+if __name__ == "__main__":
+    main()
